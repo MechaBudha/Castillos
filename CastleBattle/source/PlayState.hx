@@ -12,7 +12,7 @@ class PlayState extends FlxState
 	private var castilloEnemigo:Castillo;
 	private var piso:FlxSprite;
 	
-	private var bichoPrueda:Pibito;
+	private var bichoPrueda:personajes.Pibito;
 	override public function create():Void
 	{
 		super.create();

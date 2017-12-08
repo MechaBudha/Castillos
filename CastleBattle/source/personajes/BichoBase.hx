@@ -1,4 +1,4 @@
-package;
+package personajes;
 
 import flixel.FlxSprite;
 import flixel.effects.particles.FlxEmitter;
@@ -21,7 +21,7 @@ class BichoBase extends FlxSprite
 	private var equipo:Bool;
 	private var esquina:Float;
 	private var velocidad:Int;
-	private var orden:Int; //0 rendev, 1 marchar, 2 parar, 3 retroceder
+	private var orden:Int;
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset, estado:PlayState, _equipo:Bool, _esquina:Float) 
 	{
 		super(X, Y, SimpleGraphic);
@@ -29,10 +29,10 @@ class BichoBase extends FlxSprite
 		setFacingFlip(FlxObject.RIGHT, false, false);
 		equipo = _equipo;
 		esquina = _esquina;
+		orden = esquina;
 		emisor = new FlxEmitter(this.x + this.width / 2,this.y + this.height/2,30);
 		emisor.focusOn(this);
 		estado.add(emisor);
-		orden = 0;
 		scale.set(0.3,0.3);
 	}
 	public function recibirDanio(d:Int):Void
@@ -88,27 +88,15 @@ class BichoBase extends FlxSprite
 		{
 			facing = FlxObject.LEFT;
 		}
-		switch (orden) 
+		if (this.x > orden) 
 		{
-			case 0:
-				if (this.x < esquina ) 
-				{
-					velocity.x = Math.abs(velocidad);
-				} else if (this.x > esquina) 
-				{
-					velocity.x = -(Math.abs(velocidad))
-				} else
-				{
-					velocity.x = 0;
-				}
-			case 1:
-				velocity.x = velocidad;
-			case 2:
-				velocity.x = 0;
-			case 3:
-				velocity.x = -velocidad;
-			default:
-				velocity.x = 0;
+			velocidad.x = -velocidad;
+		} else if (this.x < orden) 
+		{
+			velocidad.x = velocidad;
+		} else 
+		{
+			velocidad.x = 0;
 		}
 	}
 	
