@@ -15,24 +15,26 @@ class Castillo extends FlxSprite
 	private var esquina:Float;
 	private var vida:Int;
 	private var barra:FlxBar;
-	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset, equipo:Bool, estado:PlayState) 
+	private var equipo:Bool;
+	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset, _equipo:Bool, estado:PlayState) 
 	{
 		super(X, Y, SimpleGraphic);
 		loadGraphic(AssetPaths.Castillo__png);
+		equipo = _equipo;
 		if (equipo) 
 		{
 			scale.set(-0.5, 0.5);
 			updateHitbox();
 			esquina = this.x + this.width;
-			barra = new FlxBar(this.x, this.y + 25, FlxBarFillDirection.LEFT_TO_RIGHT, Std.int(this.width), 10, this, "vida", 0, 500, true);
+			barra = new FlxBar(this.x, this.y - 25, FlxBarFillDirection.LEFT_TO_RIGHT, Std.int(this.width), 10, this, "vida", 0, 500, true);
 			
 			
 		} else 
 		{
 			scale.set( 0.5, 0.5);
 			updateHitbox();
-			esquina = this.x;
-			barra = new FlxBar(this.x, this.y + 25, FlxBarFillDirection.RIGHT_TO_LEFT, Std.int(this.width), 10, this, "vida", 0, 500, true);
+			esquina = 0;
+			barra = new FlxBar(this.x, this.y - 25, FlxBarFillDirection.RIGHT_TO_LEFT, Std.int(this.width), 10, this, "vida", 0, 500, true);
 		}
 		barra.createFilledBar(FlxColor.TRANSPARENT, FlxColor.RED, true, FlxColor.BLACK);
 		estado.add(barra);

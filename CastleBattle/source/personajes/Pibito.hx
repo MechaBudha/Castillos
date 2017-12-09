@@ -9,9 +9,9 @@ import personajes.BichoBase;
  */
 class Pibito extends personajes.BichoBase 
 {
-	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset, estado:PlayState, _equipo:Bool, _esquina:Float) 
+	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset, estado:PlayState, _equipo:Bool, _esquina:Float,_creador:Spawner) 
 	{
-		super(X, Y, SimpleGraphic, estado, _equipo, _esquina);
+		super(X, Y, SimpleGraphic, estado, _equipo, _esquina,_creador);
 		loadGraphic(AssetPaths.Char1__png);
 		vida = Reg.pibitoVida;
 		danio = Reg.pibitoDanio;
