@@ -35,7 +35,7 @@ class BichoBase extends FlxSprite
 		emisor = new FlxEmitter(this.x + this.width / 2,this.y + this.height/2,30);
 		emisor.focusOn(this);
 		estado.add(emisor);
-		scale.set(0.3,0.3);
+		scale.set(0.3, 0.3);
 	}
 	public function recibirDanio(d:Int):Void
 	{
@@ -130,5 +130,9 @@ class BichoBase extends FlxSprite
 	public function getOrden():Float
 	{
 		return orden;
+	}
+	public function chocar():Void
+	{
+		velocity.x = 0;
 	}
 }

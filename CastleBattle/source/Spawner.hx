@@ -95,8 +95,8 @@ class Spawner extends FlxBasic
 						bicho = new BichoBase(x, FlxG.camera.height -60, null, estado, equipo, esquina, this);
 				}
 				bicho.y -= bicho.height;
-				unidades.members.push(bicho);
-				estado.add(bicho);
+				unidades.add(bicho);
+				//estado.add(unidades);
 				contadorUnidades++;
 				contadorTiempo = 0;
 			}

@@ -21,6 +21,7 @@ class Castillo extends FlxSprite
 		super(X, Y, SimpleGraphic);
 		loadGraphic(AssetPaths.Castillo__png);
 		equipo = _equipo;
+		immovable = false;
 		if (equipo) 
 		{
 			scale.set(-0.5, 0.5);

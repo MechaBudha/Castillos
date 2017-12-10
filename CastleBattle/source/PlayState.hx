@@ -59,7 +59,7 @@ class PlayState extends FlxState
 			spawnersAliados.members.push(new Spawner(equipoAliado[j], aliados, this, true, castilloAliado.getEsquina()));
 			spawnersEnemigos.members.push(new Spawner(equipoEnemigo[j], enemigos, this, false, castilloEnemigo.getEsquina()));
 		}
-		interfaz = new Interfaz(this, piso, equipoAliado,spawnersAliados);
+		interfaz = new Interfaz(this, piso, equipoAliado, spawnersAliados);
 	}
 	public static function cargarEquipos(aliados:Array<String>, enemigos:Array<String>)
 	{
@@ -83,6 +83,9 @@ class PlayState extends FlxState
 			spawnersEnemigos.members[i].update(elapsed);
 		}
 		interfaz.update(elapsed);
+		FlxG.collide(castilloAliado, enemigos, atacarCastillo);
+		FlxG.collide(castilloEnemigo, aliados, atacarCastillo);
+		FlxG.collide(aliados, enemigos, atacarBicho);
 	}
 	private function cameraControl():Void
 	{
@@ -114,4 +117,15 @@ class PlayState extends FlxState
 			aliados.members[i].recibirOrden(o);
 		}
 	}
+	private function atacarCastillo(cas:Castillo,bic:BichoBase)
+	{
+		cas.danio(bic.getDanio());
+	}
+	private function atacarBicho(bic1:BichoBase,bic2:BichoBase)
+	{
+		bic1.recibirDanio(bic2.getDanio());
+		bic2.recibirDanio(bic1.getDanio());
+	}
+	
+	
 }
